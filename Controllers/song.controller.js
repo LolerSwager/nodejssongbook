@@ -1,11 +1,19 @@
-import db from '../config/db.config.js'
+import SongModel from '../Models/song.model.js';
 
+const song = new SongModel;
 class SongController {
-    list = async (req, res) =>{
-        const sql = `SELECT * FROM song`;
-        db.query(sql, (err, result) => {
-            res.json(result);
-        })
+    constructor(){
+        console.log('Instance call of Song Controller');
+    }
+
+    list = async (req, res) => {
+        const result = await song.getList();
+        res.json(result);
+    }
+
+    get = async (req, res) => {
+        const result = await song.getRow(req.params.id);
+        res.json(result);
     }
 }
 
