@@ -1,5 +1,6 @@
 import Express from "express";
 import {router as SongRouter} from "./Routes/songs.router.js";
+import {router as ArtistRouter} from './Routes/artist.router.js'
 
 const port = 4000;
 
@@ -13,6 +14,7 @@ app.use((req, res, next) => {
 })
 
 app.use(SongRouter);
+app.use(ArtistRouter);
 
 app.listen(process.env.PORT || port,() => {
     console.log(`port is on ${port}`)
